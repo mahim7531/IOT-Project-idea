@@ -1,1 +1,900 @@
 
+# 🛡️ Smart Military Camp Perimeter Monitoring System
+
+An **IoT-based defensive perimeter monitoring system** designed to detect suspicious movement, vibration, unauthorized entry, and sensor tampering around a secured military/camp perimeter.
+
+The system uses distributed IoT sensor nodes, an IoT gateway, a backend server, and a real-time monitoring dashboard to provide early alerts to authorized security personnel.
+
+> **Project Type:** IoT + AI/ML + Embedded Systems + Web Dashboard
+> **Purpose:** Defensive monitoring and security research
+> **Status:** Academic/Prototype Project
+
+---
+
+## 📌 Table of Contents
+
+* [Overview](#-overview)
+* [Problem Statement](#-problem-statement)
+* [Objectives](#-objectives)
+* [Key Features](#-key-features)
+* [System Architecture](#-system-architecture)
+* [Hardware Components](#-hardware-components)
+* [Software Technologies](#-software-technologies)
+* [How It Works](#-how-it-works)
+* [Sensor Nodes](#-sensor-nodes)
+* [Detection Logic](#-detection-logic)
+* [Dashboard](#-dashboard)
+* [Database Structure](#-database-structure)
+* [Project Structure](#-project-structure)
+* [Installation](#-installation)
+* [API Endpoints](#-api-endpoints)
+* [Future Improvements](#-future-improvements)
+* [Advantages](#-advantages)
+* [Limitations](#-limitations)
+* [Team](#-team)
+* [License](#-license)
+
+---
+
+# 🔎 Overview
+
+Traditional perimeter security systems often depend heavily on human observation and isolated sensors.
+
+This project proposes a **distributed IoT-based perimeter monitoring system** where multiple sensor nodes continuously monitor different security zones.
+
+When an abnormal event is detected, the system sends the event to a central server and displays an alert on a web dashboard.
+
+### Example:
+
+```text
+Zone A → Normal
+Zone B → Normal
+Zone C → Motion Detected
+Zone D → Vibration Detected
+Zone E → Sensor Tampering
+```
+
+Security personnel can monitor all zones from a centralized dashboard.
+
+---
+
+# ❗ Problem Statement
+
+Large secured areas may contain multiple perimeter zones that are difficult to monitor continuously.
+
+Potential problems include:
+
+* Unauthorized movement
+* Fence vibration
+* Sensor/node failure
+* Sensor tampering
+* Communication failure
+* Delayed human response
+* Lack of centralized monitoring
+
+The proposed system attempts to improve **situational awareness and early warning** using IoT sensors and real-time monitoring.
+
+---
+
+# 🎯 Objectives
+
+The main objectives are:
+
+1. Monitor multiple perimeter zones.
+2. Detect suspicious motion.
+3. Detect abnormal vibration.
+4. Detect sensor tampering.
+5. Monitor sensor/node health.
+6. Send real-time alerts.
+7. Display events on a centralized dashboard.
+8. Store historical security events.
+9. Provide zone-based monitoring.
+10. Explore AI-based anomaly detection.
+
+---
+
+# 🚀 Key Features
+
+### 🔹 1. Motion Detection
+
+PIR sensors can detect movement within a monitored zone.
+
+### 🔹 2. Vibration Detection
+
+A vibration sensor can identify unusual physical disturbances around a monitored structure.
+
+### 🔹 3. Sensor Tampering Detection
+
+The system can detect events such as:
+
+* Node displacement
+* Unexpected device shutdown
+* Enclosure opening
+* Communication loss
+
+### 🔹 4. Real-Time Alerts
+
+When suspicious activity is detected:
+
+```text
+ALERT
+Zone: C
+Event: Motion Detected
+Time: 02:35:21
+Status: HIGH
+```
+
+### 🔹 5. Multi-Zone Monitoring
+
+Multiple IoT nodes can monitor different zones.
+
+```text
+Zone A
+Zone B
+Zone C
+Zone D
+Zone E
+```
+
+### 🔹 6. Device Health Monitoring
+
+The server can monitor:
+
+* Battery level
+* Device status
+* Last communication time
+* Sensor status
+* Network connectivity
+
+### 🔹 7. Historical Event Logs
+
+All detected events can be stored for later analysis.
+
+---
+
+# 🏗️ System Architecture
+
+```text
+              ┌──────────────────────┐
+              │     Sensor Node A    │
+              │ ESP32 + Sensors      │
+              └──────────┬───────────┘
+                         │
+              ┌──────────▼───────────┐
+              │     Sensor Node B    │
+              │ ESP32 + Sensors      │
+              └──────────┬───────────┘
+                         │
+              ┌──────────▼───────────┐
+              │     Sensor Node C    │
+              │ ESP32 + Sensors      │
+              └──────────┬───────────┘
+                         │
+                         ▼
+                ┌─────────────────┐
+                │   IoT Gateway   │
+                │ MQTT / Network  │
+                └────────┬────────┘
+                         │
+                         ▼
+                ┌─────────────────┐
+                │ Backend Server  │
+                │ Node.js/Express │
+                └────────┬────────┘
+                         │
+              ┌──────────▼──────────┐
+              │      Database      │
+              │      MongoDB       │
+              └──────────┬──────────┘
+                         │
+                         ▼
+                ┌─────────────────┐
+                │ Web Dashboard   │
+                │ React + Tailwind│
+                └─────────────────┘
+```
+
+---
+
+# 🔧 Hardware Components
+
+## Required
+
+| Component            | Purpose                  |
+| -------------------- | ------------------------ |
+| ESP32                | Main IoT controller      |
+| PIR Sensor           | Motion detection         |
+| Vibration Sensor     | Detect vibration         |
+| Reed Switch          | Detect enclosure opening |
+| Buzzer               | Local warning            |
+| LED                  | Device status            |
+| Battery/Power Supply | Power source             |
+| Wi-Fi/LoRa Module    | Communication            |
+
+## Optional
+
+| Component          | Purpose                   |
+| ------------------ | ------------------------- |
+| GPS Module         | Node location             |
+| ESP32-CAM          | Visual verification       |
+| Temperature Sensor | Environmental monitoring  |
+| Light Sensor       | Environmental information |
+| OLED Display       | Local status              |
+
+> Hardware should be used only for authorized academic/security testing and controlled environments.
+
+---
+
+# 💻 Software Technologies
+
+## Embedded
+
+* ESP32
+* Arduino IDE
+* C/C++
+
+## Communication
+
+* MQTT
+* Wi-Fi
+* LoRa (optional)
+
+## Backend
+
+* Node.js
+* Express.js
+* REST API
+
+## Database
+
+* MongoDB
+* Mongoose
+
+## Frontend
+
+* React.js
+* Tailwind CSS
+* JavaScript
+* Recharts
+
+## Optional AI
+
+* Python
+* Scikit-learn
+* TensorFlow/PyTorch
+
+---
+
+# ⚙️ How It Works
+
+### Step 1 — Sensor Monitoring
+
+Each ESP32 continuously reads sensor values.
+
+```text
+PIR
+ ↓
+Vibration
+ ↓
+Tamper
+ ↓
+Device Health
+```
+
+### Step 2 — Local Processing
+
+The ESP32 performs basic threshold/rule checks.
+
+Example:
+
+```text
+Motion = TRUE
+Vibration = FALSE
+Tamper = FALSE
+```
+
+### Step 3 — Send Data
+
+The node publishes data through MQTT.
+
+Example:
+
+```json
+{
+  "deviceId": "NODE-003",
+  "zone": "ZONE-C",
+  "motion": true,
+  "vibration": false,
+  "tamper": false,
+  "battery": 87,
+  "timestamp": "2026-08-19T02:35:21Z"
+}
+```
+
+### Step 4 — Backend Processing
+
+The backend receives the sensor event and determines the event status.
+
+```text
+NORMAL
+WARNING
+ALERT
+```
+
+### Step 5 — Dashboard
+
+The event is displayed on the monitoring dashboard.
+
+```text
+┌───────────────────────────────────┐
+│     PERIMETER MONITORING          │
+├───────────────────────────────────┤
+│ Zone A     🟢 NORMAL              │
+│ Zone B     🟢 NORMAL              │
+│ Zone C     🔴 ALERT               │
+│ Zone D     🟡 WARNING             │
+└───────────────────────────────────┘
+```
+
+---
+
+# 📡 Sensor Nodes
+
+Each node represents one monitoring zone.
+
+Example:
+
+```text
+NODE-001 → Zone A
+NODE-002 → Zone B
+NODE-003 → Zone C
+NODE-004 → Zone D
+```
+
+Each node sends:
+
+```text
+Device ID
+Zone ID
+Motion Status
+Vibration Status
+Tamper Status
+Battery Level
+Signal Strength
+Timestamp
+```
+
+---
+
+# 🧠 Detection Logic
+
+The prototype can initially use rule-based detection.
+
+### Example
+
+```text
+IF motion = true
+    → Motion Alert
+
+IF vibration = true
+    → Vibration Warning
+
+IF tamper = true
+    → Tampering Alert
+
+IF device offline
+    → Device Offline Warning
+```
+
+For a more advanced version, multiple sensor signals can be combined:
+
+```text
+Motion
+   +
+Vibration
+   +
+Time
+   +
+Zone
+   ↓
+Anomaly Score
+   ↓
+Risk Level
+```
+
+---
+
+# 🤖 AI-Based Anomaly Detection
+
+An optional machine-learning component can learn normal sensor patterns.
+
+Example features:
+
+```text
+motion_count
+vibration_level
+time_of_day
+temperature
+signal_strength
+battery_level
+```
+
+The model can classify events as:
+
+```text
+NORMAL
+ANOMALY
+```
+
+Possible algorithms:
+
+* Isolation Forest
+* Random Forest
+* Logistic Regression
+* Decision Tree
+
+For the first prototype, **rule-based detection is recommended**. AI can be added after the basic IoT system works.
+
+---
+
+# 📊 Monitoring Dashboard
+
+The dashboard can contain:
+
+### Dashboard Cards
+
+```text
+Total Nodes       25
+Online Nodes      23
+Active Alerts      2
+Offline Nodes      2
+```
+
+### Zone Status
+
+```text
+Zone A → 🟢 Normal
+Zone B → 🟢 Normal
+Zone C → 🔴 Alert
+Zone D → 🟡 Warning
+```
+
+### Event Table
+
+| Time  | Zone | Event     | Severity |
+| ----- | ---- | --------- | -------- |
+| 02:35 | C    | Motion    | High     |
+| 02:41 | D    | Vibration | Medium   |
+| 03:10 | A    | Tamper    | High     |
+
+---
+
+# 🗄️ Database Structure
+
+## Device Collection
+
+```json
+{
+  "deviceId": "NODE-001",
+  "zone": "ZONE-A",
+  "status": "online",
+  "battery": 92,
+  "lastSeen": "2026-08-19T02:30:00Z"
+}
+```
+
+## Event Collection
+
+```json
+{
+  "deviceId": "NODE-003",
+  "zone": "ZONE-C",
+  "eventType": "motion",
+  "severity": "high",
+  "timestamp": "2026-08-19T02:35:21Z"
+}
+```
+
+## User Collection
+
+```json
+{
+  "name": "Admin",
+  "email": "admin@example.com",
+  "role": "admin"
+}
+```
+
+---
+
+# 📁 Project Structure
+
+```text
+smart-perimeter-monitoring/
+│
+├── firmware/
+│   ├── node/
+│   │   ├── node.ino
+│   │   ├── sensors.cpp
+│   │   └── sensors.h
+│
+├── server/
+│   ├── config/
+│   │   └── db.js
+│   │
+│   ├── controllers/
+│   │   ├── deviceController.js
+│   │   └── eventController.js
+│   │
+│   ├── models/
+│   │   ├── Device.js
+│   │   └── Event.js
+│   │
+│   ├── routes/
+│   │   ├── deviceRoutes.js
+│   │   └── eventRoutes.js
+│   │
+│   ├── middleware/
+│   │   └── authMiddleware.js
+│   │
+│   └── server.js
+│
+├── client/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── hooks/
+│   │   └── App.jsx
+│   │
+│   └── package.json
+│
+├── ai/
+│   ├── dataset/
+│   ├── models/
+│   ├── train.py
+│   └── predict.py
+│
+├── docs/
+│   ├── architecture.png
+│   └── project-report.pdf
+│
+└── README.md
+```
+
+---
+
+# 🔌 API Endpoints
+
+## Devices
+
+```text
+GET    /api/devices
+GET    /api/devices/:id
+POST   /api/devices
+PUT    /api/devices/:id
+DELETE /api/devices/:id
+```
+
+## Events
+
+```text
+GET    /api/events
+GET    /api/events/:id
+POST   /api/events
+```
+
+## Dashboard
+
+```text
+GET /api/dashboard/summary
+GET /api/dashboard/zones
+GET /api/dashboard/recent-events
+```
+
+---
+
+# 📡 MQTT Topics
+
+Example topic structure:
+
+```text
+perimeter/node/001/data
+perimeter/node/002/data
+perimeter/node/003/data
+```
+
+Alert topic:
+
+```text
+perimeter/alerts
+```
+
+Device status:
+
+```text
+perimeter/device/status
+```
+
+---
+
+# 🔐 Security
+
+The system should include basic security mechanisms such as:
+
+* JWT authentication
+* Role-based access
+* MQTT authentication
+* HTTPS in deployment
+* Input validation
+* Secure password hashing
+* Device authentication
+* Audit logs
+
+Only authorized personnel should have access to monitoring data.
+
+---
+
+# 🧪 Testing
+
+Testing should be performed in a **controlled academic environment**.
+
+### Sensor Tests
+
+* Motion detection test
+* Vibration test
+* Tamper test
+* Device disconnect test
+* Battery monitoring test
+* MQTT communication test
+
+### Software Tests
+
+* API testing
+* Authentication testing
+* Database testing
+* Dashboard testing
+* Alert testing
+
+---
+
+# 📈 Future Improvements
+
+Possible future extensions:
+
+### 1. AI Anomaly Detection
+
+Use machine learning to reduce false alerts.
+
+### 2. Edge AI
+
+Perform lightweight inference directly on edge devices.
+
+### 3. Mesh Networking
+
+Use multiple nodes to improve communication resilience.
+
+### 4. Computer Vision
+
+Add camera-based verification for authorized test environments.
+
+### 5. Mobile Application
+
+Build an Android application for authorized monitoring personnel.
+
+### 6. Offline Mode
+
+Allow nodes to temporarily store events when the network is unavailable.
+
+### 7. Predictive Maintenance
+
+Predict sensor/node failures using historical telemetry.
+
+---
+
+# ⭐ Advantages
+
+* Real-time monitoring
+* Multi-zone architecture
+* Low-cost prototype
+* Scalable IoT architecture
+* Centralized dashboard
+* Historical event tracking
+* Sensor health monitoring
+* AI extension capability
+* Suitable for academic research
+
+---
+
+# ⚠️ Limitations
+
+This is an **academic prototype**, not a certified military security system.
+
+Real-world deployment would require:
+
+* Professional security assessment
+* Reliable communication infrastructure
+* Environmental protection
+* Hardware certification
+* Redundant systems
+* Cybersecurity testing
+* Authorized operational procedures
+
+Sensor-based systems can also generate false positives, so real-world security decisions should not depend solely on automated alerts.
+
+---
+
+# 🎓 Academic Scope
+
+This project can be developed as:
+
+* CSE Project
+* IoT Project
+* Final Year Project
+* AI + IoT Project
+* Embedded Systems Project
+* Research Prototype
+
+Possible research title:
+
+> **"An IoT-Based Multi-Sensor Perimeter Monitoring and Anomaly Detection System for Secured Facilities"**
+
+---
+
+# 👥 Team Roles
+
+For a 4-member team:
+
+### Member 1 — IoT & Hardware
+
+* ESP32
+* Sensors
+* Firmware
+* MQTT communication
+
+### Member 2 — Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* REST API
+
+### Member 3 — Frontend
+
+* React
+* Tailwind CSS
+* Dashboard
+* Charts
+
+### Member 4 — AI & Research
+
+* Dataset
+* Anomaly detection
+* Model training
+* Evaluation
+* Documentation
+
+---
+
+# 🗓️ Suggested Development Plan
+
+## Week 1
+
+* Project planning
+* Hardware selection
+* ESP32 setup
+
+## Week 2
+
+* Motion sensor
+* Vibration sensor
+* Tamper sensor
+
+## Week 3
+
+* MQTT communication
+* IoT gateway
+
+## Week 4
+
+* Node.js backend
+* MongoDB
+
+## Week 5
+
+* React dashboard
+* Zone monitoring
+
+## Week 6
+
+* Alert system
+* Event history
+
+## Week 7
+
+* Dataset preparation
+* AI anomaly detection
+
+## Week 8
+
+* Testing
+* Documentation
+* Final presentation
+
+---
+
+# 📊 Expected Result
+
+The final prototype should demonstrate:
+
+```text
+       SENSOR NODES
+            │
+            ▼
+      IoT COMMUNICATION
+            │
+            ▼
+       BACKEND SERVER
+            │
+       ┌────┴────┐
+       ▼         ▼
+   DATABASE      AI
+       │         │
+       └────┬────┘
+            ▼
+      WEB DASHBOARD
+            │
+            ▼
+      SECURITY ALERT
+```
+
+The system will provide a centralized view of sensor status and detected events across multiple monitored zones.
+
+---
+
+# 🧑‍💻 Authors
+
+**Project:** Smart Military Camp Perimeter Monitoring System
+
+**Department:** Computer Science & Engineering
+
+**Project Type:** IoT & AI-Based Defence Monitoring
+
+**Country:** Bangladesh
+
+---
+
+# 📜 License
+
+This project is intended for **educational, research, and authorized defensive monitoring purposes only**.
+
+Do not deploy or test the system on real military, government, or restricted facilities without explicit authorization.
+
+---
+
+# ⭐ Project Status
+
+```text
+🚧 Prototype / Academic Development
+```
+
+Future releases may include:
+
+```text
+[ ] Multi-node IoT network
+[ ] Real-time MQTT monitoring
+[ ] Web dashboard
+[ ] Sensor health monitoring
+[ ] Alert system
+[ ] Historical analytics
+[ ] AI anomaly detection
+[ ] Mobile monitoring application
+```
+
+---
+
+## 🙌 Conclusion
+
+The **Smart Military Camp Perimeter Monitoring System** demonstrates how IoT, embedded systems, networking, cloud/backend technologies, and machine learning can be combined to create a defensive monitoring platform for secured environments.
+
+The primary goal is to improve **early detection, situational awareness, and centralized monitoring** through a scalable and modular IoT architecture.
